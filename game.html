@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #87CEEB; /* Sky Blue */
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .bird {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .bird::before {
+            content: "\f06e"; /* Unicode for the specified bird icon in Font Awesome 4 */
+            font-family: "FontAwesome"; /* Font Awesome 4 font family */
+            font-size: 30px;
+            color: #ffd35c; /* Custom primary color */
+            text-shadow: 0 0 5px #000000; /* Custom secondary color as a shadow */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="hours.html">Hours</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="volunteer.html">Volunteer</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div id="game-container">
+        <!-- Birds will be dynamically added here using JavaScript -->
+    </div>
+
+    <button id="reset-button">Reset Game</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const gameContainer = document.getElementById("game-container");
+            const resetButton = document.getElementById("reset-button");
+
+            // Function to create a bird element
+            function createBird() {
+                const bird = document.createElement("div");
+                bird.className = "bird"; // Add the bird class
+                bird.style.left = Math.random() * (gameContainer.offsetWidth - 50) + "px";
+                bird.style.top = Math.random() * (gameContainer.offsetHeight - 50) + "px";
+
+                // Event listener for clicking on a bird
+                bird.addEventListener("click", function() {
+                    alert("You caught a bird!");
+                    gameContainer.removeChild(bird);
+                });
+
+                gameContainer.appendChild(bird);
+            }
+
+            // Event listener for the reset button
+            resetButton.addEventListener("click", function() {
+                // Remove all existing birds
+                const birds = document.querySelectorAll(".bird");
+                birds.forEach(bird => gameContainer.removeChild(bird));
+
+                // Create a new set of birds
+                for (let i = 0; i < 5; i++) {
+                    createBird();
+                }
+            });
+
+            // Create initial set of birds
+            for (let i = 0; i < 5; i++) {
+                createBird();
+            }
+
+            // Add more birds every 3 seconds
+            setInterval(createBird, 3000);
+        });
+    </script>
+</main>
+</body>
+</body>
+
+	<footer>
+    <hr>
+    <p><a href="index.html" target="_blank">Home</a></p>
+    <p><a href="mailto:me@gmail.com" target="_blank">Email Us</a> &bull;
+    <a href="tel:9999999999">Call Our Office</a>
+    </p>
+    <small>&copy; Chanel Arphul. All rights reserved.</small>
+  </footer>
+
+
+</html>
